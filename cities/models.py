@@ -9,6 +9,6 @@ class City(models.Model):
         return self.city
 
     class Meta:
-        verbos_name = 'Город'
-        verbos_name_plural = 'Города'
+        verbose_name = 'Город'
+        verbose_name_plural = 'Города'
         ordering = ['city']
