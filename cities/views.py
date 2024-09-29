@@ -11,6 +11,10 @@ def index(request, pk: int = None):
 
     if pk:
         ds = City.objects.filter(id=pk).first()
+
+        if ds is None:
+            ds = City.objects.first()
+
         context = {
             'ds': ds,
         }
