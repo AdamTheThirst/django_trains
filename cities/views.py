@@ -7,11 +7,17 @@ __all__ = (
     'index',
 )
 
-def index(request):
-    ds = City.objects.all()
+def index(request, pk: int = None):
 
+    if pk:
+        ds = City.objects.filter(id=pk).first()
+        context = {
+            'ds': ds,
+        }
+        return render(request, 'detales.html', context)
+
+    ds = City.objects.all()
     context = {
         'ds': ds
     }
-
     return render(request, 'index.html', context)
