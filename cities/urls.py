@@ -5,6 +5,6 @@ from .views import *
 app_name = 'cities'
 
 urlpatterns = [
-    path('', index, name='cities_index'),
-    path('<int:pk>/', index, name='cities_detail'),
+    path('', cities_view, name='cities_index'),
+    path('<int:pk>/', cities_view, name='cities_detail'),
 ]
