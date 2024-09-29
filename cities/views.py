@@ -4,10 +4,10 @@ from .models import City
 # Create your views here.
 
 __all__ = (
-    'index',
+    'cities_view',
 )
 
-def index(request, pk: int = None):
+def cities_view(request, pk: int = None):
 
     if pk:
         ds = City.objects.filter(id=pk).first()
@@ -24,4 +24,4 @@ def index(request, pk: int = None):
     context = {
         'ds': ds
     }
-    return render(request, 'index.html', context)
+    return render(request, 'cities.html', context)
