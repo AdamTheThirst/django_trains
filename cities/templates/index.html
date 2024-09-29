@@ -5,5 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <p>TEST</p>
+    <ol>
+        {% for obj in ds %}
+            <li>{{ obj.city }}</li>
+        {% endfor %}
+    </ol>
 {% endblock %}
