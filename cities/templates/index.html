@@ -7,7 +7,7 @@
 {% block content %}
     <ol>
         {% for obj in ds %}
-            <li>{{ obj.city }}</li>
+            <li><a href="{% url 'cities_main:cities_detail' pk=obj.id %}">{{ obj.city }}</a></li>
         {% endfor %}
     </ol>
 {% endblock %}
