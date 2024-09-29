@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    <h1>Список городов:</h1>
     <ol>
         {% for obj in ds %}
             <li><a href="{% url 'cities_main:cities_detail' pk=obj.id %}"><button type="button" class="btn btn-light">{{ obj.city }}</button></a></li>
