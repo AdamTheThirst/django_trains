@@ -11,4 +11,11 @@
             <li><a href="{% url 'cities_main:cities_detail' pk=obj.id %}"><button type="button" class="btn btn-light">{{ obj.city }}</button></a></li>
         {% endfor %}
     </ol>
+
+    <form action="" method="post">
+    {% csrf_token %}
+    <label for="city">Город</label><br/>
+    <input type="text" id="city" name="city"><br/>
+    <input type="submit" value="Добавить">
+    </form>
 {% endblock %}
