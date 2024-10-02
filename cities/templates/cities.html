@@ -12,18 +12,20 @@
         {% endfor %}
     </ol>
 
-    <div class="raw">
-        <div class="col-md-4">
+    <a href="{% url 'cities_main:cities_create' %}"><button type="button" class="btn btn-light">Добавить город</button></a>
 
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
+{#    <div class="raw">#}
+{#        <div class="col-md-4">#}
+{##}
+{#            <form action="" method="post">#}
+{#                {% csrf_token %}#}
+{#                {{ form.as_p }}#}
                 {#        <button type="button" class="btn btn-light">#}
-                <input type="submit" value="Добавить">
+{#                <input type="submit" value="Добавить" class="btn btn-light">#}
                 {#        </button>#}
-            </form>
-
-        </div>
-    </div>
+{#            </form>#}
+{##}
+{#        </div>#}
+{#    </div>#}
 
 {% endblock %}

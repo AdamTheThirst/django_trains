@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView
 
 from .forms import CityForm
 # from .forms import CityForm
@@ -28,3 +28,9 @@ def cities_view(request):
 class CityDetailView(DetailView):
     queryset = City.objects.all()
     template_name = 'detales.html'
+    context_object_name = 'city'
+
+class CityCreateView(CreateView):
+    model = City
+    form_class = CityForm
+    template_name = 'create.html'
