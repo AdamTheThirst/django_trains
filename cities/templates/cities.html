@@ -20,27 +20,17 @@
                 </a></td>
 
                 <td><a href="{% url 'cities_main:cities_update' pk=obj.id %}">
-                    <button type="button" class="btn btn-light">Редактировать</button>
+                    <button type="button" class="btn btn-warning">Редактировать</button>
+                </a></td>
+
+                <td><a href="{% url 'cities_main:cities_delete' pk=obj.id %}">
+                    <button type="button" class="btn btn-danger">Удалить</button>
                 </a></td>
             </tr>
         {% endfor %}
 
     </table>
 
-    <a href="{% url 'cities_main:cities_create' %}"><button type="button" class="btn btn-light">Добавить город</button></a>
-
-{#    <div class="raw">#}
-{#        <div class="col-md-4">#}
-{##}
-{#            <form action="" method="post">#}
-{#                {% csrf_token %}#}
-{#                {{ form.as_p }}#}
-                {#        <button type="button" class="btn btn-light">#}
-{#                <input type="submit" value="Добавить" class="btn btn-light">#}
-                {#        </button>#}
-{#            </form>#}
-{##}
-{#        </div>#}
-{#    </div>#}
+    <a href="{% url 'cities_main:cities_create' %}"><button type="button" class="btn btn-primary">Добавить город</button></a>
 
 {% endblock %}
