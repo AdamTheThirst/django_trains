@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, CreateView, UpdateView
 
 from .forms import CityForm
 # from .forms import CityForm
@@ -34,3 +35,10 @@ class CityCreateView(CreateView):
     model = City
     form_class = CityForm
     template_name = 'create.html'
+    success_url = reverse_lazy('cities:cities_index')
+
+class CityUpdateView(UpdateView):
+    model = City
+    form_class = CityForm
+    template_name = 'update.html'
+    success_url = reverse_lazy('cities:cities_index')

@@ -6,11 +6,26 @@
 
 {% block content %}
     <h1>Список городов:</h1>
-    <ol>
+    <table class="table table-hover table-striped">
+
+
         {% for obj in ds %}
-            <li><a href="{% url 'cities_main:cities_detail' pk=obj.id %}"><button type="button" class="btn btn-light">{{ obj.city }}</button></a></li>
+            <tr>
+                <td>
+                    {{ obj.city }}
+                </td>
+
+                <td><a href="{% url 'cities_main:cities_detail' pk=obj.id %}">
+                    <button type="button" class="btn btn-light">Подробно</button>
+                </a></td>
+
+                <td><a href="{% url 'cities_main:cities_update' pk=obj.id %}">
+                    <button type="button" class="btn btn-light">Редактировать</button>
+                </a></td>
+            </tr>
         {% endfor %}
-    </ol>
+
+    </table>
 
     <a href="{% url 'cities_main:cities_create' %}"><button type="button" class="btn btn-light">Добавить город</button></a>
 
