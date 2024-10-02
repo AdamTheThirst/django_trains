@@ -12,11 +12,18 @@
         {% endfor %}
     </ol>
 
-    <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-{#        <button type="button" class="btn btn-light">#}
-            <input type="submit" value="Добавить">
-{#        </button>#}
-    </form>
+    <div class="raw">
+        <div class="col-md-4">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {#        <button type="button" class="btn btn-light">#}
+                <input type="submit" value="Добавить">
+                {#        </button>#}
+            </form>
+
+        </div>
+    </div>
+
 {% endblock %}
