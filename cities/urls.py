@@ -7,6 +7,5 @@ app_name = 'cities'
 
 urlpatterns = [
     path('', cities_view, name='cities_index'),
-    path('<int:pk>/', CityDetailView.as_view(), name='cities_detail'),
-
+    path('<int:pk>', CityDetailView.as_view(), name='cities_detail'),
 ]
