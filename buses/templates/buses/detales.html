@@ -1,22 +1,37 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Город
+    Детали автобуса {{ object.name }}
 {% endblock %}
 
 {% block content %}
-    <h1>Город:</h1>
+    <h1>Маршрут:</h1>
     <div class="row">
         <div class="col-md">
-            <ul>
-                <li>{{ city.city }}</li>
-            </ul>
+            <table class="table table-hover table-striped">
+                <tr>
+                    <td><p><strong>Название: </strong></p></td>
+                    <td><p>{{ object.name }}</p></td>
+                </tr>
+                <tr>
+                    <td><p><strong>Откуда: </strong></p></td>
+                    <td><p>{{ object.from_city }}</p></td>
+                </tr>
+                <tr>
+                    <td><p><strong>Куда: </strong></p></td>
+                    <td><p>{{ object.to_city }}</p></td>
+                </tr>
+                <tr>
+                    <td><p><strong>Время в пути: </strong></p></td>
+                    <td><p>{{ object.travel_time }}</p></td>
+                </tr>
+            </table>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            <a href="{% url 'cities_main:cities_index' %}">
+            <a href="{% url 'buses_main:buses_index' %}">
                 <button type="button" class="btn btn-light">Назад</button>
             </a>
         </div>

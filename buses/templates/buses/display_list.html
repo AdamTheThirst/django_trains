@@ -5,9 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Список городов:</h1>
+    <h1>Список автобусов:</h1>
 
     <table class="table table-hover table-striped">
+        <tr>
+            <th>Название</th>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Время в пути</th>
+            <th>Подробности</th>
+            <th>Редактировать</th>
+            <th>Удалить</th>
+        </tr>
         {% for obj in page_obj %}
             <tr>
                 <td>
