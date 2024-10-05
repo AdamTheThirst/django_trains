@@ -9,7 +9,7 @@ from buses.models import Bus
 class BusAdmin(admin.ModelAdmin):
     class Meta:
         model = Bus
-        ordering = ('from_city', 'travel_time')
+        ordering = ['from_city', 'travel_time']
 
     list_display = ('name',
                     'travel_time',
@@ -21,5 +21,5 @@ class BusAdmin(admin.ModelAdmin):
                     'from_city',
                     'to_city',)
 
-    list_editable = ('name',
-                    'travel_time',)
+    # list_editable = ('name',
+    #                 'travel_time',)
