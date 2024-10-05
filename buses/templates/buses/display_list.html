@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Города
+    Маршруты
 {% endblock %}
 
 {% block content %}
-    <h1>Список автобусов:</h1>
+    <h1>Список маршрутов:</h1>
 
     <table class="table table-hover table-striped">
         <tr>
@@ -71,8 +71,8 @@
         </ul>
     </nav>
 
-    <a href="{% url 'cities_main:cities_create' %}">
-        <button type="button" class="btn btn-primary">Добавить город</button>
+    <a href="{% url 'buses_main:buses_create' %}">
+        <button type="button" class="btn btn-primary">Добавить маршрут</button>
     </a>
 
 {% endblock %}
