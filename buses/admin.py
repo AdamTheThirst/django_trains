@@ -7,4 +7,19 @@ from buses.models import Bus
 
 @admin.register(Bus)
 class BusAdmin(admin.ModelAdmin):
-    pass
+    class Meta:
+        model = Bus
+        ordering = ('from_city', 'travel_time')
+
+    list_display = ('name',
+                    'travel_time',
+                    'from_city',
+                    'to_city',)
+
+    list_filter = ('name',
+                    'travel_time',
+                    'from_city',
+                    'to_city',)
+
+    list_editable = ('name',
+                    'travel_time',)
