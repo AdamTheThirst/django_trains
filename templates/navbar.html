@@ -1,6 +1,10 @@
 {% url 'cities_main:cities_index' as  cities_index %}
 {% url 'cities_main:cities_detail' as  cities_detail %}
 
+{% url 'buses_main:buses_index' as  buses_index %}
+{% url 'buses_main:buses_detail' as  buses_detail %}
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-primary " data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'home' %}">Маршруты</a>
@@ -13,7 +17,7 @@
           <a class="nav-link {% if request.path == cities_index %}active {% endif %}" aria-current="page" href="{% url 'cities_main:cities_index' %}">Города</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link {% if request.path == buses_index %}active {% endif %}" aria-current="page" href="{% url 'buses_main:buses_index' %}">Автобусы</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
