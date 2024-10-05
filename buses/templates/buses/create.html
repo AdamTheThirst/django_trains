@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Добавление города
+{% endblock %}
+
+{% block content %}
+    <h1>Добавить город:</h1>
+    {% include 'form.html' with button_name='Сохранить' btn_status='btn-primary' %}
+{% endblock %}

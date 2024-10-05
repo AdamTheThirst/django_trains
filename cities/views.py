@@ -38,7 +38,7 @@ def cities_view(request):
         'form': form,
         'page_obj': page_obj,
     }
-    return render(request, 'cities.html', context)
+    return render(request, 'display_list.html', context)
 
 class CityDetailView(DetailView):
     queryset = City.objects.all()
@@ -67,5 +67,5 @@ class CityDeleteView(DeleteView):
 class CityListView(ListView):
     paginate_by = 5
     model = City
-    template_name = 'cities.html'
+    template_name = 'display_list.html'
 
