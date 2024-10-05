@@ -5,78 +5,75 @@
 {% endblock %}
 
 {% block content %}
-    <div class="raw">
-        <div class="col-md-8 mx-auto">
-            <h1>Список городов:</h1>
+    <h1>Список городов:</h1>
 
-            <table class="table table-hover table-striped">
-                {% for obj in page_obj %}
-                    <tr>
-                        <td>
-                            {{ obj.city }}
-                        </td>
+    <table class="table table-hover table-striped">
+        {% for obj in page_obj %}
+            <tr>
+                <td>
+                    {{ obj.city }}
+                </td>
 
-                        <td><a href="{% url 'cities_main:cities_detail' pk=obj.id %}">
-                            <button type="button" class="btn btn-light">Подробно</button>
-                        </a></td>
+                <td><a href="{% url 'cities_main:cities_detail' pk=obj.id %}">
+                    <button type="button" class="btn btn-light">Подробно</button>
+                </a></td>
 
-                        <td><a href="{% url 'cities_main:cities_update' pk=obj.id %}">
-                            <button type="button" class="btn btn-warning">Редактировать</button>
-                        </a></td>
+                <td><a href="{% url 'cities_main:cities_update' pk=obj.id %}">
+                    <button type="button" class="btn btn-warning">Редактировать</button>
+                </a></td>
 
-                        <td><a href="{% url 'cities_main:cities_delete' pk=obj.id %}">
-                            <button type="button" class="btn btn-danger">Удалить</button>
-                        </a></td>
-                    </tr>
-                {% endfor %}
+                <td><a href="{% url 'cities_main:cities_delete' pk=obj.id %}">
+                    <button type="button" class="btn btn-danger">Удалить</button>
+                </a></td>
+            </tr>
+        {% endfor %}
 
-            </table>
+    </table>
 
-{#            <div class="pagination">#}
-{#                <span class="step-links">#}
-{#                    {% if page_obj.has_previous %}#}
-{#                        <a href="?page=1">Первая</a>#}
-{#                        <a href="?page={{ page_obj.previous_page_number }}"><--</a>#}
-{#                    {% endif %}#}
-{##}
-{#                    <span class="current">#}
-{#                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}#}
-{#                </span>#}
-{##}
-{#                <span class="step-links">#}
-{#                    {% if page_obj.has_next %}#}
-{#                        <a href="?page={{ page_obj.next_page_number }}">--></a>#}
-{#                        <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>#}
-{#                    {% endif %}#}
-{#            </span>#}
-{#            </div>#}
+    {#            <div class="pagination">#}
+    {#                <span class="step-links">#}
+    {#                    {% if page_obj.has_previous %}#}
+    {#                        <a href="?page=1">Первая</a>#}
+    {#                        <a href="?page={{ page_obj.previous_page_number }}"><--</a>#}
+    {#                    {% endif %}#}
+    {##}
+    {#                    <span class="current">#}
+    {#                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}#}
+    {#                </span>#}
+    {##}
+    {#                <span class="step-links">#}
+    {#                    {% if page_obj.has_next %}#}
+    {#                        <a href="?page={{ page_obj.next_page_number }}">--></a>#}
+    {#                        <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>#}
+    {#                    {% endif %}#}
+    {#            </span>#}
+    {#            </div>#}
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        {% if page_obj.has_previous %}
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
-                               tabindex="-1">Пред.</a>
-                        {% endif %}
-                        </a>
-                    </li>
-                {% for item in page_obj.paginator.page_range %}
-                    <li class="page-item"><a class="page-link {% if page_obj.number == item %}active{% endif %}" href="?page={{ item }}">{{ item }}</a></li>
-                {% endfor %}
-                    <li class="page-item">
-                        {% if page_obj.has_next %}
+    <nav aria-label="paginator">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                {% if page_obj.has_previous %}
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                       tabindex="-1">Пред.</a>
+                {% endif %}
+                </a>
+            </li>
+            {% for item in page_obj.paginator.page_range %}
+                <li class="page-item"><a class="page-link {% if page_obj.number == item %}active{% endif %}"
+                                         href="?page={{ item }}">{{ item }}</a></li>
+            {% endfor %}
+            <li class="page-item">
+                {% if page_obj.has_next %}
 
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">След.</a>
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">След.</a>
 
-                        {% endif %}
-                    </li>
-                </ul>
-            </nav>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
 
-            <a href="{% url 'cities_main:cities_create' %}">
-                <button type="button" class="btn btn-primary">Добавить город</button>
-            </a>
-        </div>
-    </div>
+    <a href="{% url 'cities_main:cities_create' %}">
+        <button type="button" class="btn btn-primary">Добавить город</button>
+    </a>
 
 {% endblock %}
