@@ -11,43 +11,33 @@
         {% for obj in page_obj %}
             <tr>
                 <td>
-                    {{ obj.city }}
+                    {{ obj.name }}
+                </td>
+                <td>
+                    {{ obj.from_city }}
+                </td>
+                <td>
+                    {{ obj.to_city }}
+                </td>
+                <td>
+                    {{ obj.travel_time }}
                 </td>
 
-                <td><a href="{% url 'cities_main:cities_detail' pk=obj.id %}">
+                <td><a href="{% url 'buses_main:buses_detail' pk=obj.id %}">
                     <button type="button" class="btn btn-light">Подробно</button>
                 </a></td>
 
-                <td><a href="{% url 'cities_main:cities_update' pk=obj.id %}">
+                <td><a href="{% url 'buses_main:buses_update' pk=obj.id %}">
                     <button type="button" class="btn btn-warning">Редактировать</button>
                 </a></td>
 
-                <td><a href="{% url 'cities_main:cities_delete' pk=obj.id %}">
+                <td><a href="{% url 'buses_main:buses_delete' pk=obj.id %}">
                     <button type="button" class="btn btn-danger">Удалить</button>
                 </a></td>
             </tr>
         {% endfor %}
 
     </table>
-
-    {#            <div class="pagination">#}
-    {#                <span class="step-links">#}
-    {#                    {% if page_obj.has_previous %}#}
-    {#                        <a href="?page=1">Первая</a>#}
-    {#                        <a href="?page={{ page_obj.previous_page_number }}"><--</a>#}
-    {#                    {% endif %}#}
-    {##}
-    {#                    <span class="current">#}
-    {#                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}#}
-    {#                </span>#}
-    {##}
-    {#                <span class="step-links">#}
-    {#                    {% if page_obj.has_next %}#}
-    {#                        <a href="?page={{ page_obj.next_page_number }}">--></a>#}
-    {#                        <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>#}
-    {#                    {% endif %}#}
-    {#            </span>#}
-    {#            </div>#}
 
     <nav aria-label="paginator">
         <ul class="pagination justify-content-center">
