@@ -16,10 +16,11 @@ class BusAdmin(admin.ModelAdmin):
                     'from_city',
                     'to_city',)
 
+    list_editable = ('travel_time',)
+
     list_filter = ('name',
                     'travel_time',
                     'from_city',
                     'to_city',)
 
-    # list_editable = ('name',
-    #                 'travel_time',)
+
