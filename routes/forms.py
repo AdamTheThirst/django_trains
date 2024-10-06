@@ -18,15 +18,14 @@ class RouteForm(forms.Form):
     route_travel_time = forms.IntegerField(label='Время в пути',
                            widget=forms.NumberInput(attrs={
                                'class': 'form-control',
-                               'placeholder': '12',
+                               'placeholder': 'Время в пути',
                            }))
 
     cities = forms.ModelMultipleChoiceField(queryset=City.objects.all(),
                                             label='Через города',
-                                            widget=forms.CheckboxSelectMultiple(
+                                            widget=forms.SelectMultiple(
                                                 attrs={
                                                     'class': 'form-control',
-                                                    'placeholder': 'Какие города хотите посетить?',
                                                 }
                                             ),
                                             required=False)
