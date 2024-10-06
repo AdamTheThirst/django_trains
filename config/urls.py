@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import home
+from routes.views import home
 urlpatterns = [
+    # path('', home, name='home'),
     path('', home, name='home'),
     path('cities/', include('cities.urls', namespace='cities_main')),
     path('buses/', include('buses.urls', namespace='buses_main')),
