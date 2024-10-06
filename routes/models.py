@@ -7,7 +7,7 @@ from buses.models import Bus
 
 class Route(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Маршрут')
-    rout_travel_time = models.PositiveSmallIntegerField(verbose_name='Время в пути (маршрут)')
+    route_travel_time = models.PositiveSmallIntegerField(verbose_name='Время в пути (маршрут)')
     from_city = models.ForeignKey(City, on_delete=models.CASCADE, blank=False, null=False, default=False, verbose_name='Отправление', related_name='route_from_city_set')
     to_city = models.ForeignKey('cities.City', on_delete=models.CASCADE, blank=False, null=False, default=False, verbose_name='Прибытие', related_name='route_to_city_set')
     buses = models.ManyToManyField(Bus, verbose_name='Список автобусов')
@@ -29,4 +29,4 @@ class Route(models.Model):
     class Meta:
         verbose_name = 'Маршрут'
         verbose_name_plural = 'Маршруты'
-        ordering = ['travel_time']
+        ordering = ['route_travel_time']
