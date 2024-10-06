@@ -7,12 +7,12 @@ class RouteForm(forms.Form):
 
     route_from_city = forms.ModelChoiceField(label='Откуда ехать', queryset=City.objects.all(),
                            widget=forms.Select(attrs={
-                               'class': 'form-control',
+                               'class': 'form-control js-example-basic-single',
                            }))
 
     route_to_city = forms.ModelChoiceField(label='Куда ехать', queryset=City.objects.all(),
                            widget=forms.Select(attrs={
-                               'class': 'form-control',
+                               'class': 'form-control js-example-basic-single',
                            }))
 
     route_travel_time = forms.IntegerField(label='Время в пути',
@@ -25,7 +25,7 @@ class RouteForm(forms.Form):
                                             label='Через города',
                                             widget=forms.SelectMultiple(
                                                 attrs={
-                                                    'class': 'form-control',
+                                                    'class': 'form-control js-example-basic-multiple',
                                                 }
                                             ),
                                             required=False)
