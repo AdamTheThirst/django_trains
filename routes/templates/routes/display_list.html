@@ -7,6 +7,5 @@
 {% block content %}
     <h1>Поиск маршрута:</h1>
     {% url 'find_routes' as action %}
-    <p>Вы уверены, что хотите удалить город {{ object.city }}?</p>
     {% include 'form.html' with button_name='Найти' btn_status='btn-danger' action=action %}
 {% endblock %}

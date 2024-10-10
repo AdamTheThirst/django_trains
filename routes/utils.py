@@ -18,13 +18,23 @@ def get_graph(qs) -> dict:
         graph[q.from_city_id].add(q.to_city_id)
     return graph
 
+
 def get_routes(request, form) -> dict:
     context = {'form': form}
+    if not form.is_valid():
+        raise ValueError('Форма не валидна')
+    data = form.cleaned_data
+    from_city = data.get('route_from_city')
+    to_city = data.get('route_to_city')
+
+    print(from_city, to_city)
+
+    if from_city is None or to_city is None:
+        raise ValueError('Не указаны города отправления или прибытия')
+
     qs = Bus.objects.all()
     graph = get_graph(qs)
-    data = form.cleaned_data
-    from_city = data['from_city']
-    to_city = data['to_city']
+    print(graph)
     route_travel_time = data['route_travel_time']
     all_ways = dfs_path(graph, from_city.id, to_city.id)
     if not len(list(all_ways)):
