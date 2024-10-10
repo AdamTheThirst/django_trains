@@ -47,6 +47,8 @@ def get_routes(request, form) -> dict:
                 right_ways.append(route)
         if not right_ways:
             raise ValueError('Маршрута через эти города нет')
+    else:
+        right_ways = all_ways
 
         print(f'{right_ways=}')
     return context
