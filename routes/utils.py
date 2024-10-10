@@ -26,17 +26,27 @@ def get_routes(request, form) -> dict:
     data = form.cleaned_data
     from_city = data.get('route_from_city')
     to_city = data.get('route_to_city')
-
-    print(from_city, to_city)
+    cities = data.get('cities')
 
     if from_city is None or to_city is None:
         raise ValueError('Не указаны города отправления или прибытия')
 
     qs = Bus.objects.all()
     graph = get_graph(qs)
-    print(graph)
+    print(f'{graph=}')
     route_travel_time = data['route_travel_time']
-    all_ways = dfs_path(graph, from_city.id, to_city.id)
-    if not len(list(all_ways)):
+    all_ways = list(dfs_path(graph, from_city.id, to_city.id))
+    print(f'{all_ways=}')
+    if not len(all_ways):
         raise ValueError('Маршрута нет')
+    if cities:
+        cities_id_list = [city.id for city in cities]
+        right_ways = []
+        for route in all_ways:
+            if all(city in route for city in cities_id_list):
+                right_ways.append(route)
+        if not right_ways:
+            raise ValueError('Маршрута через эти города нет')
+
+        print(f'{right_ways=}')
     return context
