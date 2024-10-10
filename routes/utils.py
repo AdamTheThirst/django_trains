@@ -34,7 +34,7 @@ def get_routes(request, form) -> dict:
     qs = Bus.objects.all()
     graph = get_graph(qs)
     print(f'{graph=}')
-    route_travel_time = data['route_travel_time']
+    route_travel_time = data.get('route_travel_time')
     all_ways = list(dfs_path(graph, from_city.id, to_city.id))
     print(f'{all_ways=}')
     if not len(all_ways):
