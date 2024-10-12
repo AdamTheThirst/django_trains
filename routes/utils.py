@@ -58,4 +58,27 @@ def get_routes(request, form) -> dict:
 
     right_ways = get_right_ways(all_ways, cities)
 
+    buses = []
+    all_buses ={}
+    for q in qs:
+        all_buses.setdefault((q.from_city_id, q.to_city_id), [])
+        all_buses[(q.from_city_id, q.to_city_id)].append(q)
+    for route in right_ways:
+        tmp = {}
+        tmp['buses'] = []
+        total_time = 0
+        for i in range(len(route)-1):
+            qs = all_buses[(route[i], route[i+1])]
+            q = qs[0]
+            total_time += q.travel_time
+            tmp['buses'].append(qs)
+        tmp['total_time'] = total_time
+        if total_time <= route_travel_time:
+            buses.append(tmp)
+    if not buses:
+        raise ValueError('Время в пути больше заданного')
+
+
+
+
     return context
