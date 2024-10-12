@@ -18,25 +18,7 @@ def get_graph(qs) -> dict:
         graph[q.from_city_id].add(q.to_city_id)
     return graph
 
-
-def get_routes(request, form) -> dict:
-    context = {'form': form}
-    if not form.is_valid():
-        raise ValueError('Форма не валидна')
-    data = form.cleaned_data
-    from_city = data.get('route_from_city')
-    to_city = data.get('route_to_city')
-    cities = data.get('cities')
-
-    if from_city is None or to_city is None:
-        raise ValueError('Не указаны города отправления или прибытия')
-
-    qs = Bus.objects.all()
-    graph = get_graph(qs)
-    print(f'{graph=}')
-    route_travel_time = data.get('route_travel_time')
-    all_ways = list(dfs_path(graph, from_city.id, to_city.id))
-    print(f'{all_ways=}')
+def get_right_ways(all_ways: list, cities: list) -> list:
     if not len(all_ways):
         raise ValueError('Маршрута нет')
     if cities:
@@ -51,4 +33,29 @@ def get_routes(request, form) -> dict:
         right_ways = all_ways
 
         print(f'{right_ways=}')
+
+
+def get_routes(request, form) -> dict:
+    context = {'form': form}
+    if not form.is_valid():
+        raise ValueError('Форма не валидна')
+
+    # get data from form
+    data = form.cleaned_data
+    from_city = data.get('route_from_city')
+    to_city = data.get('route_to_city')
+    cities = data.get('cities')
+
+    if from_city is None or to_city is None:
+        raise ValueError('Не указаны города отправления или прибытия')
+
+    qs = Bus.objects.all()
+    graph = get_graph(qs)
+    print(f'{graph=}')
+    route_travel_time = data.get('route_travel_time')
+    all_ways = list(dfs_path(graph, from_city.id, to_city.id))
+    print(f'{all_ways=}')
+
+    right_ways = get_right_ways(all_ways, cities)
+
     return context
