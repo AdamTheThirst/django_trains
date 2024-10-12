@@ -32,7 +32,7 @@ def get_right_ways(all_ways: list, cities: list) -> list:
     else:
         right_ways = all_ways
 
-        print(f'{right_ways=}')
+        print(f'in function {right_ways=}')
     return right_ways
 
 
@@ -80,6 +80,8 @@ def get_routes(request, form) -> dict:
             buses.append(tmp)
     if not buses:
         raise ValueError('Время в пути больше заданного')
+
+    print(f'{buses=}')
 
 
 
