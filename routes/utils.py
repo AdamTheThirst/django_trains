@@ -33,6 +33,7 @@ def get_right_ways(all_ways: list, cities: list) -> list:
         right_ways = all_ways
 
         print(f'{right_ways=}')
+    return right_ways
 
 
 def get_routes(request, form) -> dict:
@@ -57,12 +58,14 @@ def get_routes(request, form) -> dict:
     print(f'{all_ways=}')
 
     right_ways = get_right_ways(all_ways, cities)
+    print(f'{right_ways=}')
 
     buses = []
     all_buses ={}
     for q in qs:
         all_buses.setdefault((q.from_city_id, q.to_city_id), [])
         all_buses[(q.from_city_id, q.to_city_id)].append(q)
+
     for route in right_ways:
         tmp = {}
         tmp['buses'] = []
