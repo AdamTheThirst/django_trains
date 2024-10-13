@@ -10,10 +10,14 @@
         <div class="col-md-8 mx-auto">
             {% if routes %}
                 <h3>Маршрут{% if routes|length != 1 %}ы{% endif %} из г.{{ cities.from_city }} в
-                    г.{{ cities.to_city }}</h3>
+                    г.{{ cities.to_city }}</h3><br>
                 {% for route in routes %}
                     <br>
-                    <h5>Время в пути: {{ route.total_time }}</h5>
+                    <h5>
+                    {% if forloop.first %}
+                        Самое короткое время в пути:
+                    {% else %}
+                    Время в пути:{% endif %} {{ route.total_time }}</h5>
 
                     <table class="table">
                         <thead>
