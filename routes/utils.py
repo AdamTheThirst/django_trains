@@ -100,7 +100,7 @@ def get_routes(request, form) -> dict:
                     sorted_routes.append(route)
 
     context['routes'] = sorted_routes
-    context['cities'] = {'from _city': from_city.name, 'to _city': to_city.name}
+    context['cities'] = {'from _city': data.get('route_from_city'), 'to _city': data.get('route_to_city')}
 
 
 
