@@ -93,14 +93,16 @@ def get_routes(request, form) -> dict:
         sorted_routes = buses_routes
     else:
         times = list(set(r['total_time'] for r in buses_routes))
-        times = sorted(times, reverse=True)
+        times = sorted(times)
         for time in times:
             for route in buses_routes:
                 if time == route['total_time']:
                     sorted_routes.append(route)
 
     context['routes'] = sorted_routes
-    context['cities'] = {'from _city': data.get('route_from_city'), 'to _city': data.get('route_to_city')}
+    print(f'{from_city.city=}')
+    print(f'{to_city.city=}')
+    context['cities'] = {'from_city': from_city.city, 'to_city': to_city.city}
 
 
 
