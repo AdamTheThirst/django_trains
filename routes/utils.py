@@ -35,8 +35,8 @@ def get_right_ways(all_ways: list, cities: list) -> list:
         print(f'in function {right_ways=}')
     return right_ways
 
-def get_times(qs, right_ways, route_travel_time):
-    buses = []
+def get_times(qs, right_ways, route_travel_time) -> list:
+    buses_routes = []
     all_buses = {}
     for q in qs:
         all_buses.setdefault((q.from_city_id, q.to_city_id), [])
@@ -50,14 +50,14 @@ def get_times(qs, right_ways, route_travel_time):
             qs = all_buses[(route[i], route[i + 1])]
             q = qs[0]
             total_time += q.travel_time
-            tmp['buses'].append(qs)
+            tmp['buses'].append(q)
         tmp['total_time'] = total_time
         if total_time <= route_travel_time:
-            buses.append(tmp)
-    if not buses:
+            buses_routes.append(tmp)
+    if not buses_routes:
         raise ValueError('Время в пути больше заданного')
     else:
-        return buses
+        return buses_routes
 
 
 def get_routes(request, form) -> dict:
@@ -70,6 +70,7 @@ def get_routes(request, form) -> dict:
     from_city = data.get('route_from_city')
     to_city = data.get('route_to_city')
     cities = data.get('cities')
+    route_travel_time = data.get('route_travel_time')
 
     if from_city is None or to_city is None:
         raise ValueError('Не указаны города отправления или прибытия')
@@ -77,17 +78,29 @@ def get_routes(request, form) -> dict:
     qs = Bus.objects.all()
     graph = get_graph(qs)
     print(f'{graph=}')
-    route_travel_time = data.get('route_travel_time')
+
     all_ways = list(dfs_path(graph, from_city.id, to_city.id))
     print(f'{all_ways=}')
 
     right_ways = get_right_ways(all_ways, cities)
     print(f'{right_ways=}')
 
-    buses = get_times(qs=qs, right_ways=right_ways, route_travel_time=route_travel_time)
+    buses_routes = get_times(qs=qs, right_ways=right_ways, route_travel_time=route_travel_time)
+    print(f'{buses_routes=}')
 
-    print(f'{buses=}')
+    sorted_routes = []
+    if len(buses_routes) == 1:
+        sorted_routes = buses_routes
+    else:
+        times = list(set(r['total_time'] for r in buses_routes))
+        times = sorted(times, reverse=True)
+        for time in times:
+            for route in buses_routes:
+                if time == route['total_time']:
+                    sorted_routes.append(route)
 
+    context['routes'] = sorted_routes
+    context['cities'] = {'from _city': from_city.name, 'to _city': to_city.name}
 
 
 
