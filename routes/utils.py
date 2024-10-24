@@ -75,7 +75,7 @@ def get_routes(request, form) -> dict:
     if from_city is None or to_city is None:
         raise ValueError('Не указаны города отправления или прибытия')
 
-    qs = Bus.objects.all()
+    qs = Bus.objects.all().select_related('from_city', 'to_city')
     graph = get_graph(qs)
     print(f'{graph=}')
 
