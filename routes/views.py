@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from routes.forms import RouteForm
@@ -28,3 +28,12 @@ def find_routes(request):
         messages.error(request, 'Нет данных для поиска')
         context = {'form': form}
         return render(request, 'routes/display_list.html', context)
+
+def add_route(request):
+    if request.method == 'POST':
+        context = {}
+        data = request.POST
+        return render(request, 'routes/create.html', context)
+    else:
+        messages.error(request, 'Нет данных для поиска')
+        return redirect('/')
