@@ -2,6 +2,7 @@ from django import forms
 
 from buses.models import Bus
 from cities.models import City
+from routes.models import Route
 
 
 class RouteForm(forms.Form):
@@ -57,3 +58,7 @@ class RouteModelForm(forms.ModelForm):
                                                 }
                                             ),
                                             required=False)
+
+    class Meta:
+        model = Route
+        fields = '__all__'
