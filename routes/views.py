@@ -33,6 +33,16 @@ def add_route(request):
     if request.method == 'POST':
         context = {}
         data = request.POST
+        if data:
+            total_time = int(data['total_time'])
+            from_city_id = int(data['from_city'])
+            to_city_id = int(data['to_city'])
+            buses = data['buses'].split(',')
+
+            buses_lst = [int(t) for t in buses if t.isdigit()]
+
+
+
         return render(request, 'routes/create.html', context)
     else:
         messages.error(request, 'Нет данных для поиска')
