@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
+from buses.models import Bus
+from cities.models import City
 from routes.forms import RouteForm
 from routes.utils import get_routes
 
@@ -34,6 +36,7 @@ def add_route(request):
         context = {}
         data = request.POST
         if data:
+            print(data)
             total_time = int(data['total_time'])
             from_city_id = int(data['from_city'])
             to_city_id = int(data['to_city'])
@@ -41,7 +44,11 @@ def add_route(request):
 
             buses_lst = [int(t) for t in buses if t.isdigit()]
 
+            qs = Bus.objects.filter(id__in=buses_lst).select_related('from_city', 'to_city')
 
+            cities = City.objects.filter(id__in=[from_city_id, to_city_id]).in_bulk()
+
+            a=1
 
         return render(request, 'routes/create.html', context)
     else:
