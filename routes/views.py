@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from buses.models import Bus
 from cities.models import City
@@ -80,3 +80,8 @@ class RouteListView(ListView):
     paginate_by = 5
     model = Route
     template_name = 'routes/list.html'
+
+class RouteDetailView(DetailView):
+    queryset = Route.objects.all()
+    template_name = 'routes/detales.html'
+    context_object_name = 'route_detail'
