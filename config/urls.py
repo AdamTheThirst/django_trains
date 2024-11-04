@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from routes.views import home, find_routes, add_route
+from routes.views import home, find_routes, add_route, save_route
 
 urlpatterns = [
     # path('', home, name='home'),
@@ -27,5 +27,6 @@ urlpatterns = [
 
     path('cities/', include('cities.urls', namespace='cities_main')),
     path('buses/', include('buses.urls', namespace='buses_main')),
+    path('save_route/', save_route, name='save_route'),
     path('admin/', admin.site.urls),
 ]
