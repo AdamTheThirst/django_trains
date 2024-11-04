@@ -18,7 +18,7 @@
         {% for obj in page_obj %}
             <tr>
                 <td>
-                    {{ obj.name }}
+                    <a href="{% url 'details' pk=obj.pk %}"> {{ obj.name }}</a>
                 </td>
                 <td>
                     {{ obj.from_city }}
@@ -58,8 +58,5 @@
         </ul>
     </nav>
 
-    <a href="{% url 'buses_main:buses_create' %}">
-        <button type="button" class="btn btn-primary">Добавить маршрут</button>
-    </a>
 
 {% endblock %}
