@@ -2,5 +2,8 @@
 {% block title %}Add{% endblock %}
 
 {%  block content %}
-    {% include 'form.html' with button='Save' %}
+
+    {% url 'save_route' as action %}
+    {% include 'form.html' with button_name='Save' action=action%}
+
 {% endblock %}
