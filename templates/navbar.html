@@ -20,7 +20,7 @@
           <a class="nav-link {% if request.path == buses_index %}active {% endif %}" aria-current="page" href="{% url 'buses_main:buses_index' %}">Автобусы</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" {% if request.path == buses_index %}active {% endif %}" aria-current="page" href="{% url 'list' %}">Маршруты</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
