@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Маршрут
+{% endblock %}
+
+{% block content %}
+    <h1>Список автобусов:</h1>
+
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>Название</th>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Время в пути</th>
+            <th>Список автобусов</th>
+
+        </tr>
+
+            <tr>
+                <td>
+                    {{ object.name }}
+                </td>
+                <td>
+                    {{ object.from_city }}
+                </td>
+                <td>
+                    {{ object.to_city }}
+                </td>
+                <td>
+                    {{ object.route_travel_time }}
+                </td>
+                <td>
+                    {% for bus in object.buses.all  %}
+                        <p class="">{{ bus }}</p>
+                    {% endfor %}
+                </td>
+
+            </tr>
+
+
+    </table>
+
+    <nav aria-label="paginator">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                {% if page_obj.has_previous %}
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                       tabindex="-1">Пред.</a>
+                {% endif %}
+                </a>
+            </li>
+            {% for item in page_obj.paginator.page_range %}
+                <li class="page-item"><a class="page-link {% if page_obj.number == item %}active{% endif %}"
+                                         href="?page={{ item }}">{{ item }}</a></li>
+            {% endfor %}
+            <li class="page-item">
+                {% if page_obj.has_next %}
+
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">След.</a>
+
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+    <a href="{% url 'buses_main:buses_create' %}">
+        <button type="button" class="btn btn-primary">Добавить маршрут</button>
+    </a>
+
+{% endblock %}
