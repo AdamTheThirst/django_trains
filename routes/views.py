@@ -1,6 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, DeleteView
 
 from buses.models import Bus
 from cities.models import City
@@ -85,3 +87,11 @@ class RouteDetailView(DetailView):
     queryset = Route.objects.all()
     template_name = 'routes/detales.html'
     context_object_name = 'route_detail'
+
+class RouteDeleteView(LoginRequiredMixin, DeleteView):
+    model = Route
+    success_url = reverse_lazy('routes:list')
+
+    def get(self, *args, **kwargs):
+        messages.success(request, 'Route is removed')
+        return self.post(request, *args, **kwargs)
