@@ -16,6 +16,7 @@ class UserLoginForm(forms.Form):
         'placeholder': 'Password',
     }))
 
+    # расширяет встроенный метод clean
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -27,3 +28,8 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError('Password is incorrect')
 
             user = authenticate(username=username, password=password)
+
+            if not user:
+                raise forms.ValidationError('Username is unactive')
+
+        return super().clean(*args, **kwargs)
