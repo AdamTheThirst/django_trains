@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.handlers.modwsgi import check_password
 
 # импортирование встроенной модели юзера
@@ -25,3 +25,5 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError('Username is incorrect')
             if not check_password(password, qs[0].password):
                 raise forms.ValidationError('Password is incorrect')
+
+            user = authenticate(username=username, password=password)
