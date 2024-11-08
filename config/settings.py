@@ -43,6 +43,7 @@ PROJECT_APP = [
     'cities.apps.CitiesConfig',
     'buses.apps.BusesConfig',
     'routes.apps.RoutesConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APP
