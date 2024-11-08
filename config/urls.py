@@ -22,9 +22,9 @@ from routes.views import home, find_routes, add_route, save_route, RouteListView
 urlpatterns = [
     # path('', home, name='home'),
     path('', home, name='home'),
+    path('accounts', include('accounts.urls', namespace='accounts')),
     path('find_routes/', find_routes, name='find_routes'),
     path('add_route/', add_route, name='add_route'),
-
     path('cities/', include('cities.urls', namespace='cities_main')),
     path('buses/', include('buses.urls', namespace='buses_main')),
     path('save_route/', save_route, name='save_route'),
