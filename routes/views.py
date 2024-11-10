@@ -91,6 +91,7 @@ class RouteDetailView(DetailView):
 class RouteDeleteView(LoginRequiredMixin, DeleteView):
     model = Route
     success_url = reverse_lazy('routes:list')
+    template_name = 'routes/delete.html'
 
     def get(self, *args, **kwargs):
         messages.success(request, 'Route is removed')
