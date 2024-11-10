@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.shortcuts import render
@@ -38,21 +39,21 @@ class BusDetailView(DetailView):
     template_name = 'buses/detales.html'
     context_object_name = 'Bus'
 
-class BusCreateView(CreateView):
+class BusCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Bus
     form_class = BusForm
     template_name = 'buses/create.html'
     success_url = reverse_lazy('buses:buses_index')
     sucsess_message = f'Автобусный маршрут успешно создан'
 
-class BusUpdateView(SuccessMessageMixin, UpdateView):
+class BusUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Bus
     form_class = BusForm
     template_name = 'buses/update.html'
     success_url = reverse_lazy('buses:buses_index')
     sucsess_message = f'Автобусный маршрут успешно отредактирован'
 
-class BusDeleteView(DeleteView):
+class BusDeleteView(LoginRequiredMixin, DeleteView):
     model = Bus
     template_name = 'buses/delete.html'
     success_url = reverse_lazy('buses:buses_index')
