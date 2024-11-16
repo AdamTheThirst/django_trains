@@ -49,28 +49,28 @@
     {#            </span>#}
     {#            </div>#}
 
-    <nav aria-label="paginator">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                {% if page_obj.has_previous %}
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
-                       tabindex="-1">Пред.</a>
-                {% endif %}
-                </a>
-            </li>
-            {% for item in page_obj.paginator.page_range %}
-                <li class="page-item"><a class="page-link {% if page_obj.number == item %}active{% endif %}"
-                                         href="?page={{ item }}">{{ item }}</a></li>
-            {% endfor %}
-            <li class="page-item">
-                {% if page_obj.has_next %}
+        <nav aria-label="paginator">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    {% if page_obj.has_previous %}
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                           tabindex="-1">Пред.</a>
+                    {% endif %}
+                    </a>
+                </li>
+                {% for item in page_obj.paginator.page_range %}
+                    <li class="page-item"><a class="page-link {% if page_obj.number == item %}active{% endif %}"
+                                             href="?page={{ item }}">{{ item }}</a></li>
+                {% endfor %}
+                <li class="page-item">
+                    {% if page_obj.has_next %}
 
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">След.</a>
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">След.</a>
 
-                {% endif %}
-            </li>
-        </ul>
-    </nav>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
 
     <a href="{% url 'cities_main:cities_create' %}">
         <button type="button" class="btn btn-primary">Добавить город</button>
